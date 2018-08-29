@@ -1,13 +1,18 @@
-from py2neo import Graph, Node, Relationship
+from py2neo import authenticate, Graph, Node, Relationship
 from passlib.hash import bcrypt
 from datetime import datetime
 import os
 import uuid
 
 url = os.environ.get('GRAPHENEDB_URL', 'http://localhost:7474')
-username = os.environ.get('NEO4J_USERNAME')
-password = os.environ.get('NEO4J_PASSWORD')
+username = os.environ.get('NEO4J_USERNAME', 'neo4j')
+password = os.environ.get('NEO4J_PASSWORD', 'yy')
 
+#print(url, username, password)
+
+# set up authentication parameters
+#authenticate(url, user=username, password=password)
+#graph = Graph(url + '/db/data/')
 graph = Graph(url + '/db/data/', username=username, password=password)
 
 class User:
